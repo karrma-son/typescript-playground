@@ -1,6 +1,6 @@
 export abstract class Content{
     constructor(
-        public id: string,
+        public topic: string,
         public title: string,
         public author: string,
         public createdAt: Date,
@@ -8,7 +8,9 @@ export abstract class Content{
     ){};
 
     abstract getSummary(): string;
+    
     abstract getContentType(): string;
+
     abstract publish(): void
     
     togglePublish(): void {
@@ -16,7 +18,7 @@ export abstract class Content{
     }
     
     getMeta(): string{
-        return `${this.getContentType} by - ${this.author} ${this.createdAt.toDateString}`
+        return `${this.getContentType()} by - ${this.author} ${this.createdAt.toDateString()}`
 
     }
 }

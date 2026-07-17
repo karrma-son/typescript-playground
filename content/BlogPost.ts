@@ -1,8 +1,8 @@
 import { Content } from "./Content";
 
-class BlogPost extends Content{
+export class BlogPost extends Content{
     constructor(
-        id: string, 
+        topic: string, 
         title: string, 
         author: string, 
         createdAt: Date, 
@@ -10,21 +10,24 @@ class BlogPost extends Content{
         public tags: string[],
         public readingTime: number
     ){
-        super(id, title, author, createdAt, published);
+        super(topic, title, author, createdAt, published);
     }
+
     getSummary(): string {
-        return `${this.id} by - ${this.author} - ${this.createdAt.toDateString()}`
+        return `${this.topic} ${this.getContentType()} by → ${this.author} • ${this.createdAt.toDateString()} `
     }
     
     getContentType(): string {
         
          return (`Blog Post`)
-     }
-
-     publish(): void {
-         this.published = true
-     }
-
+    }
+         
+     
+    publish(): void {
+        this.published = true
+    }
+    
+  
 }
 
 
@@ -32,6 +35,10 @@ class BlogPost extends Content{
 const blog1 = new BlogPost("New", "The Start of Something", "Jason Paz", new Date(), true, ["Night", "Bedtime"], 83)
 
 console.log(blog1.getSummary())
-console.log(blog1.getContentType())
 
+console.log(blog1.getMeta())
 blog1.publish()
+console.log(blog1.published)
+blog1.togglePublish()
+console.log(blog1.published)
+
